@@ -9,6 +9,8 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchMap, setSearchMap] = useState('')
 
+
+
   async function getLocation() {
     const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
     const response = await axios.get(API);
@@ -19,10 +21,6 @@ export default function App() {
     
     console.log(locationObj);
 
-    // eslint-disable-next-line no-constant-condition
-    if (!{searchMap}) { // Replace 'mapIsAvailable' with your condition
-      "error: Unable to geocode";
-    }
   }
   function updateQuery(event) {
     setSearchQuery(event.target.value);
@@ -39,7 +37,6 @@ export default function App() {
       <h2>The city is: {location.display_name}</h2>
       <h2>The latitude is: {location.lat}</h2>
       <h2>The longitude is: {location.lon}</h2>
-      {/* <h2>{errorMessage}</h2> */}
       {/* <h2>{mapResponse.render()}</h2> */}
       <img src={searchMap} alt="" />
 
