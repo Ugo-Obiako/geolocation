@@ -7,7 +7,8 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 export default function App() {
   const [location, setLocation] = useState({display_name: "info about ???"});
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchMap, setSearchMap] = useState('')
+  const [searchMap, setSearchMap] = useState('');
+
 
 
 
@@ -18,7 +19,6 @@ export default function App() {
     const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=12`;
     setSearchMap(mapUrl);
     setLocation(locationObj);
-    
     console.log(locationObj);
 
   }
@@ -26,10 +26,11 @@ export default function App() {
     setSearchQuery(event.target.value);
   }
 
-//   function errorMessage {
-//     if (locationObj === false || "undefined")
-//     return "error: Unable to geocode"
-//   }
+  // function errorMessage {
+  // if (locationObj === false || locationObj = "undefined") {
+  //    "error: Unable to geocode"
+  // }
+
   return (
     <>
       <input onChange={updateQuery} />
@@ -37,7 +38,6 @@ export default function App() {
       <h2>The city is: {location.display_name}</h2>
       <h2>The latitude is: {location.lat}</h2>
       <h2>The longitude is: {location.lon}</h2>
-      {/* <h2>{mapResponse.render()}</h2> */}
       <img src={searchMap} alt="" />
 
     </>
