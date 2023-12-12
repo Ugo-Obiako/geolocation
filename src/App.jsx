@@ -17,17 +17,19 @@ export default function App() {
     const API = `https://us1.locationiq.com/v1/search.php?key=${API_KEY}&q=${searchQuery}&format=json`;
     const response = await axios.get(API);
     const locationObj = response.data[0];
-    const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${location.lat},${location.lon}&zoom=12`;
-    setSearchMap(mapUrl);
+
     setLocation(locationObj);
+    const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${API_KEY}&center=${locationObj.lat},${locationObj.lon}&zoom=12`;
+    setSearchMap(mapUrl);
     console.log(locationObj);
+    fetchWeatherData(locationObj.lat, locationObj.lon, searchQuery)
   }
   // Previous code stops here
 
   // Added code
-  const fetchWeatherData = async () => {
+  const fetchWeatherData = async (lat, lon, query) => {
     try {
-      const resData = await fetch(`/weather?lat=${location.lat}&lon=${location.lon}&searchQuery=${searchQuery}`);
+      const resData = await fetch(`/weather?lat=${lat}&lon=${lon}&searchQuery=${query}`);
       if (resData) {
         const response = await axios.get(resData);
         setForecastData(response.data);
